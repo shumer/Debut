@@ -1034,3 +1034,14 @@ section article.prem_list a {
   clear: both;
 }
 /*-------- end persons list page --------------*/
+/*----------- mobile menu ---------------------*/
+.main-menu .menu > .expanded > .menu li a {
+  padding-left: 90px;
+}
+.main-menu .menu > .expanded > a{
+  pointer-events: none;
+  cursor: default;
+  color: rgb(136, 136, 136);
+}
+/*---------end mobile menu --------------------*/
+
