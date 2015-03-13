@@ -1,0 +1,493 @@
+<?php
+/**
+ * @file
+ * Module logic and API.
+ */
+define('DEBUT_COMMON_THEME_MOBILE', 'debut_mobile');
+
+define('DEBUT_COMMON_MENU_ADMIN', 'admin/config/development/debut_config');
+define('DEBUT_COMMON_PERM_ADMIN', 'Administer Debut');
+define('DEBUT_COMMON_PERM_CM', 'Act as Content Manager');
+define('DEBUT_COMMON_PERM_ADMIN_LINKS', 'DEBUT: see admin links');
+
+// Define search url.
+define('DEBUT_COMMON_PATH_SEARCH', variable_get('DEBUT_COMMON_PATH_SEARCH', 'search'));
+
+// Define CT names.
+define('DEBUT_COMMON_TYPE_NEWS', 'news');
+define('DEBUT_COMMON_TYPE_PRESS', 'press_about_debut');
+define('DEBUT_COMMON_TYPE_DOCUMENTS', 'documents');
+define('DEBUT_COMMON_TYPE_PERSONS', 'debut_prize_person');
+define('DEBUT_COMMON_TYPE_JURY', 'debut_jury');
+define('DEBUT_COMMON_TYPE_BOOKS', 'books');
+define('DEBUT_COMMON_TYPE_PHOTOS', 'photo_listing');
+define('DEBUT_COMMON_TYPE_VIDEO', 'video');
+define('DEBUT_COMMON_TYPE_IBOOKS', 'ibooks');
+define('DEBUT_COMMON_TYPE_MASTER_CLASS_SECTION', 'master_class');
+define('DEBUT_COMMON_TYPE_MASTER_CLASS_TEXT', 'master_class_text');
+define('DEBUT_COMMON_TYPE_INTERVIEW', 'interview');
+define('DEBUT_COMMON_TYPE_TRAVELS', 'travel');
+define('DEBUT_COMMON_TYPE_TRAVEL_DESCRIPTION', 'travel_description');
+define('DEBUT_COMMON_TYPE_NOBEL_SPEECH', 'nobel_speech');
+
+// Define site pages.
+define('DEBUT_COMMON_PAGE_PRIZE_PERSONS', 'prize_persons');
+define('DEBUT_COMMON_PAGE_ALPHABET_PERSONS', 'persons_list');
+define('DEBUT_COMMON_PAGE_PRIZE_JURY', 'prize_jury');
+define('DEBUT_COMMON_PAGE_ALPHABET_JURY', 'jury_list');
+define('DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT', 'press_list');
+define('DEBUT_COMMON_PAGE_NEWS_LIST', 'news_list');
+define('DEBUT_COMMON_PAGE_DOCUMENTS_LIST', 'documents_list');
+define('DEBUT_COMMON_PAGE_BOOKS_LIST', 'books_list');
+define('DEBUT_COMMON_PAGE_IBOOKS_LIST', 'ikniga');
+define('DEBUT_COMMON_PAGE_PHOTO_LIST', 'photo_listing');
+define('DEBUT_COMMON_PAGE_TRAVELS_LIST', 'travels');
+define('DEBUT_COMMON_PAGE_TRAVEL_DESCRIPTION_LIST', 'travels');
+define('DEBUT_COMMON_PAGE_VIDEO', 'video_list');
+define('DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST', 'master_class');
+define('DEBUT_COMMON_PAGE_NOBEL_SPEECH', 'nobel_speech');
+define('DEBUT_COMMON_PAGE_PERSONS_LIST', 'persons_list');
+define('DEBUT_COMMON_PAGE_JURY_ALPHABET_LIST', 'jury_list');
+define('DEBUT_COMMON_PAGE_CONTACT', 'nofollow/contact');
+define('DEBUT_COMMON_PAGE_CONTACT_SUBMIT', 'contact_us/submitted');
+define('DEBUT_COMMON_PAGE_SEND_MANUSCRIPT', 'send_manuscript');
+
+// Define views name.
+define('DEBUT_COMMON_VIEW_VIDEOS_HOME_PAGE', 'debut_common_videos_home_page');
+define('DEBUT_COMMON_VIEW_BOOKS_HOME_PAGE', 'debut_common_books_home_page');
+define('DEBUT_COMMON_VIEW_NEWS_LISTING', 'debut_view_list_news');
+define('DEBUT_COMMON_VIEW_TRAVELS_LISTING', 'debut_view_list_travels');
+define('DEBUT_COMMON_VIEW_DOCUMENTS_LISTING', 'debut_view_list_documents');
+define('DEBUT_COMMON_VIEW_PRESS_ABOUT_DEBUT_LISTING', 'debut_view_list_press_about_debut');
+define('DEBUT_COMMON_VIEW_VIDEO_LISTING', 'debut_view_list_video');
+define('DEBUT_COMMON_VIEW_PHOTO_LISTING', 'debut_view_list_photos');
+define('DEBUT_COMMON_VIEW_BOOKS_LISTING', 'debut_view_list_books');
+define('DEBUT_COMMON_VIEW_IBOOKS_LISTING', 'debut_view_list_ibooks');
+define('DEBUT_COMMON_VIEW_NOBEL_SPEECH_LISTING', 'debut_view_list_nobel_speach');
+define('DEBUT_COMMON_VIEW_GET_NOBEL_SPEECH_BY_AUTHOR', 'debut_view_nobel_speech_by_author');
+define('DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST', 'debut_view_persons_nominees_list');
+define('DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST_TEASER', 'debut_view_persons_nominees_list_teaser');
+define('DEBUT_COMMON_VIEW_QUERY_RANDOM_PRIZE_PERSON', 'debut_query_random_prize_person');
+define('DEBUT_COMMON_VIEW_QUERY_RANDOM_PRIZE_JURY', 'debut_query_random_prize_jury');
+define('DEBUT_COMMON_VIEW_NEWS_HOME_PAGE', 'debut_common_news_home_page');
+define('DEBUT_COMMON_VIEW_GET_PERSONS_LIST_BY_LETTER', 'debut_view_persons_list');
+define('DEBUT_COMMON_VIEW_GET_JURY_LIST_BY_LETTER', 'debut_view_jury_alphabet_list');
+define('DEBUT_COMMON_VIEW_GET_JURY_LIST', 'debut_view_jury_prize_list');
+define('DEBUT_COMMON_VIEW_MASTER_CLASS', 'debut_view_list_master_class');
+define('DEBUT_COMMON_VIEW_GET_MASTER_CLASS_BY_PARAMS', 'debut_view_get_master_class_by_params');
+
+define('DEBUT_COMMON_VOC_PERSON_PRIZES', 'debut_prizes');
+
+define('DEBUT_COMMON_TID_NEWSLETTERS', variable_get('DEBUT_COMMON_TID_NEWSLETTERS', '978'));
+define('DEBUT_COMMON_MAX_PERSONS_NOMINEES_SHOW', 6); // 2 years (3 each year).
+define('DEBUT_COMMON_JURY_PAGE_LETTER_COUNT_SHOW', 10);
+define('DEBUT_COMMON_JURY_PAGE_YEARS_COUNT_SHOW', 3);
+
+// Load includes.
+module_load_include('inc', 'debut_common');
+module_load_include('form.inc', 'debut_common');
+
+/**
+ * Implements hook_qtools_varnish_user_cache_bin_alter().
+ */
+function debut_common_qtools_varnish_user_cache_bin_alter(&$cookie_inf) {
+  $is_mobile = debut_common_is_mobile();
+  if ($is_mobile) {
+    $cookie_inf .= '_mobile';
+  }
+}
+
+/**
+ * Implements hook_node_view_alter().
+ */
+function debut_common_node_view_alter(&$build) {
+  $node = $build['#node'];
+  if (!empty($node->nid) && ! isset($build['#contextual_links'])) {
+    $build['#contextual_links']['node'] = array('node', array($node->nid));
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function debut_common_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'panels' || $module == 'ctools' || $module == 'entityreference') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function debut_common_menu() {
+  $menu[DEBUT_COMMON_MENU_ADMIN] = array(
+    'title' => 'Debut',
+    'description' => 'Debut Configuration',
+    'access arguments' => array(DEBUT_COMMON_PERM_ADMIN),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('debut_common_form_conf'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'debut_common.admin.inc'
+  );
+
+  $menu['debut_common/ajax/debut_common_site_calendar'] = array(
+    'type' => MENU_CALLBACK,
+    'theme callback' => 'ajax_base_page_theme',
+    'delivery callback' => 'ajax_deliver',
+    'access arguments' => array('access content'),
+    'page callback' => 'debut_common_page_ajax_site_calendar_callback',
+    'file' => 'debut_common.page.inc',
+  );
+
+  $menu['debut_common/ajax/debut_common_newsletter_subscribe'] = array(
+    'type' => MENU_CALLBACK,
+    'theme callback' => 'ajax_base_page_theme',
+    'delivery callback' => 'ajax_deliver',
+    'access arguments' => array('access content'),
+    'page callback' => 'debut_common_page_ajax_newsletter_subscribe_callback',
+    'file' => 'debut_common.page.inc',
+  );
+
+  $menu['debut_common/ajax/debut_common_persons_view_more/%'] = array(
+    'type' => MENU_CALLBACK,
+    'theme callback' => 'ajax_base_page_theme',
+    'delivery callback' => 'ajax_deliver',
+    'access arguments' => array('access content'),
+    'page arguments' => array(3),
+    'page callback' => 'debut_common_persons_view_more',
+    'file' => 'debut_common.page.inc',
+  );
+
+  // Close parent callback.
+  $menu['debut_common/js/parent_close'] = array(
+    'type' => MENU_CALLBACK,
+    'access callback' => TRUE,
+    'page callback' => 'debut_common_page_js_parent_close',
+    'file' => 'debut_common.page.inc',
+  );
+
+  // Reload parent callback.
+  $menu['debut_common/js/parent_reload'] = array(
+    'type' => MENU_CALLBACK,
+    'access callback' => TRUE,
+    'page callback' => 'debut_common_page_js_parent_reload',
+    'file' => 'debut_common.page.inc',
+  );
+
+  return $menu;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function debut_common_permission() {
+  $permissions = array();
+
+  $permissions[DEBUT_COMMON_PERM_ADMIN] = array(
+    'title' => t('Administer Debut'),
+    'description' => t('Perform administration tasks for Debut.'),
+  );
+
+  $permissions[DEBUT_COMMON_PERM_CM] = array(
+    'title' => t('Administer Debut content'),
+    'description' => t('Perform administration of content for Debut.'),
+  );
+
+  $permissions[DEBUT_COMMON_PERM_ADMIN_LINKS] = array(
+    'title' => t('Access to admin links'),
+    'description' => t('Enable to see admin links'),
+  );
+
+  return $permissions;
+}
+
+/**
+ * Implements hook_init().
+ */
+function debut_common_init() {
+
+  // Force front end to have ajax libs.
+  drupal_add_library('system', 'drupal.ajax');
+
+  $is_mobile = debut_common_is_mobile();
+  if ($is_mobile) {
+    admin_menu_suppress();
+  }
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function debut_common_node_presave($node) {
+
+  $supported_types = array(
+    DEBUT_COMMON_TYPE_NEWS,
+    DEBUT_COMMON_TYPE_DOCUMENTS,
+    DEBUT_COMMON_TYPE_PRESS,
+    DEBUT_COMMON_TYPE_TRAVEL_DESCRIPTION,
+    DEBUT_COMMON_TYPE_TRAVELS,
+  );
+
+  if (!in_array($node->type, $supported_types)) {
+    return;
+  }
+
+  // Clear cache for year list data.
+  $cache_var = variable_get('debut_common_cache_data', array());
+  foreach ($cache_var as $item) {
+    cache_clear_all($item, 'cache');
+  }
+  variable_del('debut_common_cache_data');
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function debut_common_node_insert($node) {
+
+  $supported_types = array(
+    DEBUT_COMMON_TYPE_NEWS => array(
+      'page_news_list_panel_context',
+      'page_news_list_panel_context_2',
+      'page_home_panel_context',
+      'page_home_panel_context_2'
+    ),
+    DEBUT_COMMON_TYPE_PRESS => array(
+      'page_press_list_panel_context',
+      'page_press_list_panel_context_2'
+    ),
+    DEBUT_COMMON_TYPE_DOCUMENTS => array(
+      'page_documents_panel_context',
+      'page_documents_panel_context_2'
+    ),
+    DEBUT_COMMON_TYPE_PERSONS => array(
+      'page_persons_list_panel_context',
+      'page_persons_list_panel_context_2',
+      'page_prize_persons_panel_context',
+      'page_prize_persons_panel_context_2',
+      'page_home_panel_context',
+      'page_home_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_JURY => array(
+      'page_jury_list_panel_context',
+      'page_jury_list_panel_context_2',
+      'page_prize_jury_panel_context',
+      'page_prize_jury_panel_context_2',
+      'page_home_panel_context',
+      'page_home_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_BOOKS => array(
+      'page_books_list_panel_context',
+      'page_books_list_panel_context_2',
+      'page_home_panel_context',
+      'page_home_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_IBOOKS => array(
+      'page_ikniga_panel_context',
+      'page_ikniga_panel_context_2',
+      'page_books_list_panel_context',
+      'page_books_list_panel_context_2',
+      'page_home_panel_context',
+      'page_home_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_PHOTOS => array(
+      'page_photo_listing_panel_context',
+      'page_photo_listing_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_VIDEO => array(
+      'page_video_list_panel_context',
+      'page_video_list_panel_context_2',
+      'page_home_panel_context',
+      'page_home_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_MASTER_CLASS_SECTION => array(
+      'page_master_class_panel_context',
+      'page_master_class_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_TRAVELS => array(
+      'page_travels_panel_context',
+      'page_travels_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_NOBEL_SPEECH => array(
+      'page_nobel_speech_panel_context',
+      'page_nobel_speech_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_MASTER_CLASS_TEXT => array(),
+    DEBUT_COMMON_TYPE_INTERVIEW => array(),
+    DEBUT_COMMON_TYPE_TRAVEL_DESCRIPTION => array(),
+  );
+
+  if (empty($supported_types[$node->type])) {
+    return;
+  }
+
+  // Purge cache.
+  $tags = $supported_types[$node->type];
+  qtools_varnish_purge_tags($tags);
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function debut_common_field_widget_form_alter(&$element, &$form_state, $context) {
+
+  // If this is an image field type.
+  if ($context['field']['type'] == 'image') {
+
+    // Loop through the element children (there will always be at least one).
+    foreach (element_children($element) as $key => $child) {
+
+      // Add the new process function to the element.
+      $element[$key]['#process'][] = 'debut_common_image_field_widget_process';
+    }
+  }
+}
+
+/**
+ * Implements hook_theme.
+ */
+function debut_common_theme() {
+  $theme['debut_common_embed_player'] = array(
+    'variables' => array('params' => array()),
+    'template' => 'debut-common-embed-player',
+    'path' => drupal_get_path('theme', 'debut') . '/templates/debut_common',
+  );
+
+  $theme['debut_mobile_common_embed_player'] = array(
+    'variables' => array('params' => array()),
+    'template' => 'debut-common-embed-player',
+    'path' => drupal_get_path('theme', 'debut_mobile') . '/templates/debut_common',
+  );
+
+  $theme['debut_common_persons_view_more'] = array(
+    'variables' => array('params' => array()),
+    'template' => 'debut-common-persons-view-more',
+    'path' => drupal_get_path('theme', 'debut') . '/templates/debut_common',
+  );
+
+  return($theme);
+}
+
+/**
+ * Implements hook_mail_edit_text().
+ */
+function debut_common_mail_edit_text($mailkey, $language) {
+  $return = array();
+  $return['subject'] = t('Subject');
+  $return['body'] = t('Body');
+  return $return;
+}
+
+/**
+ * Implements hook_mailkeys().
+ */
+function debut_common_mailkeys() {
+  return array(
+    'contact_us_admin' => t('Sends administration mail when user submits "Contact us" form.'),
+    'manuscript_admin' => t('Sends administration mail when user submits "Send Manuscript" form.'),
+  );
+}
+
+/**
+ * Implements hook_mail().
+ */
+function debut_common_mail($key, &$message, $params) {
+  $message['subject'] = t('Original subject');
+  $message['body'][] = t('Original body');
+}
+
+/**
+ * Implements hook_token_info().
+ */
+function debut_common_token_info() {
+
+  $info = array();
+
+  $info['types']['debut_common_contact_us'] = array(
+    'name' => t('Debut contact us'),
+    'description' => t('Debut contact us'),
+  );
+
+  $info['tokens']['debut_common_contact_us']['name'] = array(
+    'name' => t('Sender name.'),
+    'description' => t('Sender name.'),
+  );
+
+  $info['tokens']['debut_common_contact_us']['email'] = array(
+    'name' => t('Sender email.'),
+    'description' => t('Sender email.'),
+  );
+
+  $info['tokens']['debut_common_contact_us']['message_text'] = array(
+    'name' => t('Message text.'),
+    'description' => t('Message text.'),
+  );
+
+  $info['types']['debut_common_send_manuscript'] = array(
+    'name' => t('Debut Send Manuscript'),
+    'description' => t('Debut Send Manuscript'),
+  );
+
+  $info['tokens']['debut_common_send_manuscript']['manuscript_url'] = array(
+    'name' => t('Link to manuscript file.'),
+    'description' => t('Link to manuscript file.'),
+  );
+
+  $info['tokens']['debut_common_send_manuscript']['name'] = array(
+    'name' => t('Sender name.'),
+    'description' => t('Sender name.'),
+  );
+
+  $info['tokens']['debut_common_send_manuscript']['email'] = array(
+    'name' => t('Sender email.'),
+    'description' => t('Sender email.'),
+  );
+
+  $info['tokens']['debut_common_send_manuscript']['message_text'] = array(
+    'name' => t('Message text.'),
+    'description' => t('Message text.'),
+  );
+
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function debut_common_tokens($type, $tokens, array $data = array(), array $options = array()) {
+  $replacements = array();
+  if ($type == 'debut_common_contact_us') {
+    if (isset($data['debut_common_contact_us'])) {
+      $values = $data['debut_common_contact_us'];
+      $replacements['[debut_common_contact_us:name]'] = check_plain($values['contact_form_name']);
+      $replacements['[debut_common_contact_us:email]'] = check_plain($values['contact_form_email']);
+      $replacements['[debut_common_contact_us:message_text]'] = check_plain($values['contact_form_message']);
+    }
+  }
+  if ($type == 'debut_common_send_manuscript') {
+    if (isset($data['debut_common_send_manuscript'])) {
+      $values = $data['debut_common_send_manuscript'];
+      $replacements['[debut_common_send_manuscript:name]'] = check_plain($values['name']);
+      $replacements['[debut_common_send_manuscript:email]'] = check_plain($values['email']);
+      $replacements['[debut_common_send_manuscript:message_text]'] = check_plain($values['comment']);
+      $replacements['[debut_common_send_manuscript:manuscript_url]'] = $values['manuscript_url'];
+    }
+  }
+  return $replacements;
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function debut_common_menu_alter(&$items) {
+
+  // Make /search path available for panels.
+  if ($items['search']['page callback'] == 'search_view') {
+    unset($items['search']);
+  }
+
+  // Unset all search entries.
+  foreach (module_implements('search') as $name) {
+    unset($items['search/'. $name .'/%menu_tail']);
+  }
+}

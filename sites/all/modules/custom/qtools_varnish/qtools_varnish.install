@@ -1,0 +1,23 @@
+<?php
+/**
+ * @file
+ * Install hooks.
+ */
+
+/**
+ * Implements hook_enable().
+ */
+function qtools_varnish_enable() {
+
+  // Set tag value separator.
+  if (variable_get('QTOOLS_TAG_EQUAL_SIGN', '|') != '=') {
+    variable_set('QTOOLS_TAG_EQUAL_SIGN', '=');
+  }
+
+}
+
+/**
+ * Implements hook_disable().
+ */
+function qtools_varnish_disable() {
+}

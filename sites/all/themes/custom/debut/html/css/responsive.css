@@ -1,0 +1,93 @@
+@media screen and (max-width: 1200px) {
+  #page-inner{
+    width: 800px;
+  }
+
+  .panel-3col .panel-col-last {
+    display:  none;
+  }
+
+  .panel-3col .panel-col,
+  .panel-2col .panel-col {
+    width: 530px;
+  }
+
+  .footer .inner,
+  .footer .inner .level-3,
+  .header {
+    width: 800px;
+  }
+
+  .underheader .social {
+    display: none;
+  }
+
+  .book .books-item .book-content {
+    line-height: 16px;
+    width: 240px;
+    font-size: 12px;
+  }
+
+  .books-item .book-content {
+    float: left;
+    font-family: "PT Sans",sans-serif;
+    width: 330px;
+  }
+
+  .books-item .book-content .book-author .text .listing {
+    overflow: auto;
+    float: none;
+  }
+
+  .block-persons-list .item {
+    margin: 0px 0px 20px 0px;
+  }
+
+  /*home page slider styles */
+  .coda-slider-wrapper {
+    width: 542px;
+  }
+  .coda-slider-wrapper.arrows .coda-slider, .coda-slider-wrapper.arrows .coda-slider .panel {
+    width: 542px;
+    background: none repeat scroll 0 0 #FEF7ED;
+    overflow: hidden;
+  }
+  .coda-slider, .coda-slider .panel {
+    width: 300px;
+  }
+  .coda-nav ul {
+    width: 500px !important;
+  }
+  .gallery-wrapper .span {
+    margin-right: -12px;
+  }
+  /*---*/
+
+  .photo-listing-item .separator {
+    width: 525px;
+  }
+
+  /** Responsive table**/
+  .view-debut-view-persons-list.view-display-id-default .view-content .views-row,
+  .view-debut-view-jury-alphabet-list.view-display-id-default .view-content .views-row,
+  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row,
+  .view-debut-view-persons-nominees-list-teaser.view-display-id-default .view-content .views-row {
+    float:left;
+    width:31%;
+  }
+  .view-debut-view-persons-list.view-display-id-default .view-content .views-row:nth-child(3n-1),
+  .view-debut-view-jury-alphabet-list.view-display-id-default .view-content .views-row:nth-child(3n-1),
+  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row:nth-child(3n-1),
+  .view-debut-view-persons-nominees-list-teaser.view-display-id-default .view-content .views-row:nth-child(3n-1) {
+    margin-right:3%;
+    margin-left:3%;
+  }
+  .view-debut-view-persons-list.view-display-id-default .view-content .views-row:nth-child(3n + 1),
+  .view-debut-view-persons-list.view-display-id-default .view-content .views-row:nth-child(3n + 1),
+  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row:nth-child(3n + 1),
+  .view-debut-view-persons-nominees-list-teaser.view-display-id-default .view-content .views-row:nth-child(3n + 1) {
+    clear:left;
+    margin-left:1%;
+  }
+
+}

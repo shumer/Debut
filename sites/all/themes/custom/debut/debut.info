@@ -1,0 +1,25 @@
+name = debut
+description = Main Debut theme
+version = 7.x-1.0
+core = 7.x
+engine = phptemplate
+
+; ======== jquery ui css
+stylesheets[screen][] = "html/js/jquery-ui.min.css"
+stylesheets[screen][] = "html/js/jquery-ui.structure.min.css"
+stylesheets[screen][] = "html/js/jquery-ui.theme.min.css"
+
+; Panels layouts.
+plugins[panels][layouts] = layouts
+
+scripts[] = html/js/jquery-ui.js
+scripts[] = html/js/jquery.fileinput.js
+scripts[] = html/js/jquery.coda-slider.js
+scripts[] = html/js/jquery.flexslider.js
+
+scripts[] = js/debut-custom.js
+
+; ======== fancybox
+scripts[] = "js/fancybox/jquery.fancybox.js"
+stylesheets[screen][] = "js/fancybox/jquery.fancybox.css"
+stylesheets[screen][] = "html/js/flexslider.css"
