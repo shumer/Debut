@@ -3,6 +3,20 @@
  * @file
  * Preprocess functions.
  */
+/**
+ * Preprocess form__user_login.
+ */
+function debut_preprocess_form__user_login(&$variables) {
+  $form = &$variables['form'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['name'] = drupal_render($form['name']);
+  $_html['pass'] = drupal_render($form['pass']);
+
+  $_html['submit'] = drupal_render($form['actions']['submit']);
+  $_html['form'] = drupal_render_children($form);
+}
 
 /**
  * Preprocess simplenews_confirm_removal_form.
