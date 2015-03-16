@@ -88,6 +88,15 @@ module_load_include('inc', 'debut_common');
 module_load_include('form.inc', 'debut_common');
 
 /**
+ * Implements hook_contextual_links_view_alter().
+ */
+function debut_common_contextual_links_view_alter(&$element, $items) {
+  if (isset($element['#links']['node-delete'])) {
+    unset($element['#links']['node-delete']);
+  }
+}
+
+/**
  * Implements hook_qtools_varnish_user_cache_bin_alter().
  */
 function debut_common_qtools_varnish_user_cache_bin_alter(&$cookie_inf) {
