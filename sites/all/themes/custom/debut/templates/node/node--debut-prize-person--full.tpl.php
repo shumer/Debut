@@ -4,7 +4,8 @@
  * Template file.
  */
 ?>
-<div class="person node-item person-item">
+<div class="person node-item person-item contextual-links-region">
+  <?php print $_html['contextual_links']; ?>
   <div class="part part-a">
     <div class="pic">
       <div class="pic-inner">
