@@ -4293,6 +4293,12 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
   }
 /*-------- end jury  listing grid -------*/
 
+/*-------- no link for sub menu title ---*/
+li.menu-no-link > a {
+  pointer-events: none;
+  cursor: default;
+}
+/*---- end no link for sub menu title ---*/
 
 /** Responsive table **/
 @media screen and (min-width: 1200px) {
