@@ -159,7 +159,10 @@ function debut_common_menu_content_type_render($subtype, $conf, $panel_args, $co
       if (!empty($item['below'])) {
         $menu_links[] = array(
           'data' => l(t($item['link']['title']), '', array('fragment' => '#', 'external' => TRUE)) . $children,
-          'class' => array( ($page == $path ) ? 'active' : $class ),
+          'class' => array(
+            ($page == $path ) ? 'active' : $class,
+            'menu-no-link',
+          ),
         );
       }
       else {
