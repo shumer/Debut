@@ -88,6 +88,21 @@ module_load_include('inc', 'debut_common');
 module_load_include('form.inc', 'debut_common');
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function debut_common_form_simplenews_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['#submit'][] = 'debut_common_simplenews_node_submit';
+}
+
+/**
+ * Submit handler for simplenews firm..
+ */
+function debut_common_simplenews_node_submit($form, &$form_state) {
+  $form_state['redirect'] = '/admin/content/simplenews';
+  drupal_redirect_form($form_state);
+}
+
+/**
  * Implements hook_contextual_links_view_alter().
  */
 function debut_common_contextual_links_view_alter(&$element, $items) {
