@@ -4,3 +4,10 @@ module: Drupal 7.34
 patch: stream_wrappers.inc
 reason: fix for realpath method
 bug decription: https://drupal.org/node/1008402
+
+date: 2015.15.03
+applied by: Ashumenko Alexander
+module: mimemail
+patch: mimemail-1209018-7.patch
+reason: cyrilic headers encoded twice by mimemail
+bug description: https://www.drupal.org/node/1209018
