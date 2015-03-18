@@ -90,4 +90,10 @@
     margin-left:1%;
   }
 
+  .view-debut-common-books-home-page ul.books-list .book-image a,
+  .view-debut-common-books-home-page ul.books-list .book-image img,
+  .view-debut-common-books-home-page ul.books-list li {
+    width: 130px;
+    height: 210px;
+  }
 }
