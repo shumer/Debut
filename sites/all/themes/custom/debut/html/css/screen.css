@@ -894,10 +894,14 @@ li.hide-before-content:hover:before {
   color: #be01b6;
 }
 
-.content .panel-col-first .block-titled .calendar-run table td a:hover,
-.content .panel-col-first .block-titled .calendar-run table td.ui-datepicker-current-day a {
-	text-decoration: none;
-	color: #be01b6;
+.content .panel-col-first .block-titled .calendar-run table td a:hover {
+        text-decoration: none;
+}
+.content .panel-col-first .block-titled .calendar-run .ui-widget td.ui-datepicker-current-day a {
+        background: #ffe45c;
+}
+.content .panel-col-first .block-titled .calendar-run .ui-widget td.ui-datepicker-current-day {
+        background: #ffe45c;
 }
 
 .content .panel-col-first .block-titled .calendar-run table td.ui-datepicker-today a{
