@@ -268,7 +268,8 @@ function debut_feature_pages_contact_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'confirm_text' => 'You message has been sent. We contact to you shortly. Thank you.',
+      'confirm_text' => 'Ваше сообщение успешно отправлено администрации сайта. 
+Спасибо за Ваше сообщение, мы свяжемся с Вами в ближайшее время.',
       'override_title' => 0,
       'override_title_text' => '',
     );
@@ -400,7 +401,8 @@ setTimeout( function () {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'confirm_text' => 'You message has been sent. We contact to you shortly. Thank you.',
+      'confirm_text' => 'Ваше сообщение успешно отправлено администрации сайта. 
+Спасибо за Ваше сообщение, мы свяжемся с Вами в ближайшее время.',
       'override_title' => 0,
       'override_title_text' => '',
     );
