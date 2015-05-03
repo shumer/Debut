@@ -500,3 +500,23 @@ function debut_common_menu_alter(&$items) {
     unset($items['search/'. $name .'/%menu_tail']);
   }
 }
+
+/**
+ * Implements hook_ckeditor_plugin().
+ */
+function debut_common_ckeditor_plugin() {
+
+  $path = drupal_get_path('module', 'debut_common') . '/plugins/ckeditor/paragraph_replacement/';
+  
+  $plugins['paragraph_replacement'] = array(
+    'name' => 'paragraph_replacement',
+    'desc' => t('Plugin to replace P to BR.'),
+    'path' => $path,
+    'buttons' => array(
+      'ParagraphReplacement' => array('label' => 'Br instead P', 'icon' => 'icons/drupalbreak.png'),
+    ),
+    'default' => 't',
+  );
+
+  return $plugins;
+}

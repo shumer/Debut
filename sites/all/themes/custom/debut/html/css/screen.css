@@ -894,10 +894,14 @@ li.hide-before-content:hover:before {
   color: #be01b6;
 }
 
-.content .panel-col-first .block-titled .calendar-run table td a:hover,
-.content .panel-col-first .block-titled .calendar-run table td.ui-datepicker-current-day a {
-	text-decoration: none;
-	color: #be01b6;
+.content .panel-col-first .block-titled .calendar-run table td a:hover {
+        text-decoration: none;
+}
+.content .panel-col-first .block-titled .calendar-run .ui-widget td.ui-datepicker-current-day a {
+        background: #ffe45c;
+}
+.content .panel-col-first .block-titled .calendar-run .ui-widget td.ui-datepicker-current-day {
+        background: #ffe45c;
 }
 
 .content .panel-col-first .block-titled .calendar-run table td.ui-datepicker-today a{
@@ -2517,7 +2521,7 @@ section article.prem_list a {
 /*------------video teaser styles---------------*/
 
 .video-list .video {
-  background: url("../images/bgs/dots.gif") repeat-x scroll 0 100% transparent;
+  //background: url("../images/bgs/dots.gif") repeat-x scroll 0 100% transparent;
   margin-bottom: 15px;
 }
 
@@ -2943,9 +2947,10 @@ section article.prem_list a {
 
 .video-shelf ul.video-list > li {
   float: left;
-  height: 220px;
+  height: 100%;
   padding-right: 20px;
   width: 214px;
+  margin-bottom: 10px;
 }
 
 .video-shelf ul.video-list li.last {
