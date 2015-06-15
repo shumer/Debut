@@ -211,7 +211,7 @@ function debut_common_send_manuscript_form_submit($form, &$form_state) {
   $params = array($token_bundle => $values);
   $params['attachments'] = array($file);
 
-  $mail = drupal_mail('debut_common', $mail_conf['message_manuscript'], $mail_conf['manuscript_email'], $language, $params, 'no-reply@pokolenie-debut.ru');
+  $mail = drupal_mail('debut_common', $mail_conf['message_manuscript'], $mail_conf['manuscript_email'], $language, $params, $values['email']);
   drupal_set_message(t('Ваше сообщение было успешно отправлено'));
 }
 
