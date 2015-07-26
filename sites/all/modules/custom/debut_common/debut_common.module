@@ -403,7 +403,7 @@ function debut_common_mailkeys() {
 function debut_common_mail_alter(&$email) {
   if (isset($email['params']['reply-to'])) {
     $email['headers']['Reply-To'] = $email['params']['reply-to'];
-    $email['headers']['From'] = $email['params']['reply-to'];
+    //$email['headers']['From'] = $email['params']['reply-to'];
   }
 }
 
