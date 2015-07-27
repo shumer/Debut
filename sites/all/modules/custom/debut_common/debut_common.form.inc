@@ -212,12 +212,8 @@ function debut_common_send_manuscript_form_submit($form, &$form_state) {
   $params = array($token_bundle => $values);
   $params['attachments'] = array($file);
   $params['reply-to'] = $values['email'];
-  if ($values['email'] == 'silent-bob13@yandex.ru') {
-    $mail = drupal_mail('debut_common', $mail_conf['message_manuscript'], 'alexander.shumenko@gmail.com', $language, $params, $values['email']);
-  }
-  else {
-    $mail = drupal_mail('debut_common', $mail_conf['message_manuscript'], $mail_conf['manuscript_email'], $language, $params, 'no-reply@pokolenie-debut.ru');
-  }
+
+  $mail = drupal_mail('debut_common', $mail_conf['message_manuscript'], $mail_conf['manuscript_email'], $language, $params, 'no-reply@pokolenie-debut.ru');
   drupal_set_message(t('Ваше сообщение было успешно отправлено'));
 }
 
