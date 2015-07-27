@@ -404,8 +404,8 @@ function debut_common_mail_alter(&$email) {
   if (isset($email['params']['reply-to'])) {
     $email['headers']['Reply-To'] = $email['params']['reply-to'];
     if ($email['params']['reply-to'] == 'silent-bob13@yandex.ru') {
-      $email['headers']['From'] = '<' . $email['params']['reply-to'] . '>';
-      //$email['from'] = $email['params']['reply-to'];
+      $email['headers']['From'] = $email['params']['reply-to'];
+      $email['from'] = $email['params']['reply-to'];
     }
   }
   //dpm($email, 'mail');
