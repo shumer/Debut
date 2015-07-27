@@ -403,10 +403,10 @@ function debut_common_mailkeys() {
 function debut_common_mail_alter(&$email) {
   if (isset($email['params']['reply-to'])) {
     $email['headers']['Reply-To'] = $email['params']['reply-to'];
-    if ($email['params']['reply-to'] == 'alexander.shumenko@gmail.com') {
+    //if ($email['params']['reply-to'] == 'alexander.shumenko@gmail.com') {
       $email['headers']['From'] = $email['params']['reply-to'] . ' <no-reply@pokolenie.debut.ru>';
-      $email['from'] = 'no-reply@pokolenie-debut.ru';
-    }
+     // $email['from'] = 'no-reply@pokolenie-debut.ru';
+    //}
   }
 }
 
