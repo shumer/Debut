@@ -195,6 +195,7 @@ function debut_common_send_manuscript_form_validate($form, &$form_state) {
  */
 function debut_common_send_manuscript_form_submit($form, &$form_state) {
   global $language;
+  global $user;
 
   // Mark file as permanent or Drupal will delete it on next cron run.
   $file = $form_state['storage']['file'];
@@ -215,6 +216,25 @@ function debut_common_send_manuscript_form_submit($form, &$form_state) {
 
   $mail = drupal_mail('debut_common', $mail_conf['message_manuscript'], $mail_conf['manuscript_email'], $language, $params, 'no-reply@pokolenie-debut.ru');
   drupal_set_message(t('Ваше сообщение было успешно отправлено'));
+
+  // We need to crete node to store mail in Drupal.
+  $node_values = array(
+    'type' => 'manuscript',
+    'uid' => $user->uid,
+    'status' => 1,
+    'comment' => 0,
+    'promote' => 0,
+    'language' => $language->language,
+  );
+  $entity = entity_create('node', $node_values);
+  $ewrapper = entity_metadata_wrapper('node', $entity);
+  $ewrapper->title->set($values['name']);
+  $ewrapper->field_manuscript_email->set($values['email']);
+  $ewrapper->field_manuscript_comment->set($values['comment']);
+  $file = (array) $file;
+  $file['display'] = 0;
+  $ewrapper->field_manuscript_file->set($file);
+  $ewrapper->save();
 }
 
 /**
@@ -237,4 +257,49 @@ function debut_common_send_manuscript_form_after_build($form, &$form_state) {
     unset($form['captcha']);
   }
   return $form;
+}
+
+/**
+ * Form for VBO manuscript submission resend.
+ */
+function debut_common_resend_manuscript_views_bulk_operations_form($options) {
+  // Send mail with notify about contact us form.
+  $site_conf_values = variable_get('debut_common_conf', array());
+  $mail_conf = $site_conf_values['mail'];
+
+  $form = array();
+  $form['mail'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Email address to send manuscripts'),
+    '#default_value' => !empty($options['mail']) ? $options['mail'] : $mail_conf['manuscript_email'],
+  );
+
+  return $form;
+}
+
+/**
+ * Form for VBO manuscript submission resend per bulk config.
+ */
+function debut_common_resend_manuscript_form($settings, &$form_state) {
+  // Send mail with notify about contact us form.
+  $site_conf_values = variable_get('debut_common_conf', array());
+  $mail_conf = $site_conf_values['mail'];
+
+  $form = array();
+  $form['mail'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Email address to send manuscripts'),
+    '#default_value' => !empty($options['mail']) ? $options['mail'] : $mail_conf['manuscript_email'],
+  );
+
+  return $form;
+}
+
+/**
+ * VBO settings form submit.
+ */
+function debut_common_resend_manuscript_submit($form, $form_state) {
+  $return = array();
+  $return['mail'] = $form_state['values']['mail'];
+  return $return;
 }

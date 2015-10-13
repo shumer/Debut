@@ -533,3 +533,47 @@ function debut_common_ckeditor_plugin() {
 
   return $plugins;
 }
+
+/**
+ * Implements hook_action_info().
+ */
+function debut_common_action_info() {
+  return array(
+    'debut_common_resend_manuscript' => array(
+      'type' => 'node',
+      'label' => t('Sends manuscript submission via mail.'),
+      'behavior' => array('changes_property'),
+      'configurable' => FALSE,
+      'vbo_configurable' => TRUE,
+      'triggers' => array('any'),
+    ),
+  );
+}
+
+/**
+ * Callback for VBO operation.
+ */
+function debut_common_resend_manuscript(&$node, $context) {
+  global $language;
+
+  // Send mail with notify about contact us form.
+  $site_conf_values = variable_get('debut_common_conf', array());
+  $mail_conf = $site_conf_values['mail'];
+
+  $values = array();
+  $values['name'] = check_plain($node->title);
+  $mail = qtools_api__field_get_item('node', $node, 'field_manuscript_email', 0, 'value');
+  $values['email'] = check_plain($mail);
+  $comment = qtools_api__field_get_item('node', $node, 'field_manuscript_comment', 0, 'value');
+  $values['comment'] = check_plain($comment);
+  $fid = qtools_api__field_get_item('node', $node, 'field_manuscript_file', 0, 'fid');
+  $file = file_load($fid);
+
+  $token_bundle = 'debut_common_send_manuscript';
+  $values['manuscript_url'] = l(t('Скачать файл'), file_create_url($file->uri));
+  $params = array($token_bundle => $values);
+  $params['attachments'] = array($file);
+  $params['reply-to'] = $values['email'];
+
+  $mail = drupal_mail('debut_common', $mail_conf['message_manuscript'], $context['mail'], $language, $params, 'no-reply@pokolenie-debut.ru');
+}
