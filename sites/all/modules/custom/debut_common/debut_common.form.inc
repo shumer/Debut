@@ -258,3 +258,48 @@ function debut_common_send_manuscript_form_after_build($form, &$form_state) {
   }
   return $form;
 }
+
+/**
+ * Form for VBO manuscript submission resend.
+ */
+function debut_common_resend_manuscript_views_bulk_operations_form($options) {
+  // Send mail with notify about contact us form.
+  $site_conf_values = variable_get('debut_common_conf', array());
+  $mail_conf = $site_conf_values['mail'];
+
+  $form = array();
+  $form['mail'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Email address to send manuscripts'),
+    '#default_value' => !empty($options['mail']) ? $options['mail'] : $mail_conf['manuscript_email'],
+  );
+
+  return $form;
+}
+
+/**
+ * Form for VBO manuscript submission resend per bulk config.
+ */
+function debut_common_resend_manuscript_form($settings, &$form_state) {
+  // Send mail with notify about contact us form.
+  $site_conf_values = variable_get('debut_common_conf', array());
+  $mail_conf = $site_conf_values['mail'];
+
+  $form = array();
+  $form['mail'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Email address to send manuscripts'),
+    '#default_value' => !empty($options['mail']) ? $options['mail'] : $mail_conf['manuscript_email'],
+  );
+
+  return $form;
+}
+
+/**
+ * VBO settings form submit.
+ */
+function debut_common_resend_manuscript_submit($form, $form_state) {
+  $return = array();
+  $return['mail'] = $form_state['values']['mail'];
+  return $return;
+}
