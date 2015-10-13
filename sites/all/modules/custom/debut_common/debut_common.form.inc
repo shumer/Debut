@@ -195,6 +195,7 @@ function debut_common_send_manuscript_form_validate($form, &$form_state) {
  */
 function debut_common_send_manuscript_form_submit($form, &$form_state) {
   global $language;
+  global $user;
 
   // Mark file as permanent or Drupal will delete it on next cron run.
   $file = $form_state['storage']['file'];
@@ -215,6 +216,25 @@ function debut_common_send_manuscript_form_submit($form, &$form_state) {
 
   $mail = drupal_mail('debut_common', $mail_conf['message_manuscript'], $mail_conf['manuscript_email'], $language, $params, 'no-reply@pokolenie-debut.ru');
   drupal_set_message(t('Ваше сообщение было успешно отправлено'));
+
+  // We need to crete node to store mail in Drupal.
+  $node_values = array(
+    'type' => 'manuscript',
+    'uid' => $user->uid,
+    'status' => 1,
+    'comment' => 0,
+    'promote' => 0,
+    'language' => $language->language,
+  );
+  $entity = entity_create('node', $node_values);
+  $ewrapper = entity_metadata_wrapper('node', $entity);
+  $ewrapper->title->set($values['name']);
+  $ewrapper->field_manuscript_email->set($values['email']);
+  $ewrapper->field_manuscript_comment->set($values['comment']);
+  $file = (array) $file;
+  $file['display'] = 0;
+  $ewrapper->field_manuscript_file->set($file);
+  $ewrapper->save();
 }
 
 /**
