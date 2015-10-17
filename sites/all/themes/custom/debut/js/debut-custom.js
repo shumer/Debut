@@ -17,7 +17,9 @@ debut_custom.gallery_a = function($context, settings){
   $context.find('.photo-listing-item').once('debut-gallery-a', function() {
 
     var $this = $(this).find('.flexslider');
-    $this.flexslider();
+    $this.flexslider({
+      smoothHeight: true
+    });
   });
 };
 
@@ -344,7 +346,7 @@ debut_custom.attach_newsletters = function ($context, settings) {
 debut_custom.attach_fb_plugin_show = function ($context, settings) {
   $context.find('.facebook-plugin-block .fb-plugin-button').once('fb-plugin-click', function (delta) {
     var $panel = $('#facebook-plugin-block');
-    
+
     $(this).click(function(e) {
       e.preventDefault();
       if ($panel.hasClass('visible')) {
