@@ -548,3 +548,7 @@ body.no-admin-menu #admin-toolbar {
   border: 1px solid #bd01b5;
 }
 /*------------end newsletter styles---------------*/
+
+.flex-control-nav {
+  z-index: 10000;
+}
