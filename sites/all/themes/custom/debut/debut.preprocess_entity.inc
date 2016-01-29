@@ -1547,3 +1547,100 @@ function debut_preprocess_node__interview__compact(&$variables) {
   $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
 }
+
+/**
+ * Preprocess node__research__full.
+ */
+function debut_preprocess_node__research__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = check_plain($node->title);
+  $_html['press_date'] = debut_render($content, 'field_publication_date');
+  $_html['body'] = debut_render($content, 'field_research_text');
+
+  $publication_link = qtools_api__field_get_item('node', $node, 'field_research_publication_link', 0, 'value');
+  $publication_text = qtools_api__field_get_item('node', $node, 'field_research_publication_text', 0, 'value');
+  $author = debut_render($content, 'field_research_author');
+
+  if (!empty($publication_link) && !empty($publication_text)) {
+    $_html['press_link'] = l($publication_text, $publication_link, array(
+      'absolute' => TRUE,
+      'html' => true,
+    ));
+  }
+  elseif (!empty($publication_text)) {
+    $_html['press_link'] = $publication_text;
+  }
+
+  if (!empty($author)) {
+    $_html['author'] = $author;
+  }
+}
+
+/**
+ * Preprocess node__research__listing.
+ */
+function debut_preprocess_node__research__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['body'] = debut_render($content, 'field_research_text');
+  $_html['press_date'] = debut_render($content, 'field_publication_date');
+
+  $publication_link = qtools_api__field_get_item('node', $node, 'field_research_publication_link', 0, 'value');
+  $publication_text = qtools_api__field_get_item('node', $node, 'field_research_publication_text', 0, 'value');
+  $author = debut_render($content, 'field_research_author');
+
+  if (!empty($publication_link) && !empty($publication_text)) {
+    $_html['press_link'] = l($publication_text, $publication_link, array(
+      'absolute' => TRUE,
+      'html' => true,
+    ));
+  }
+  elseif (!empty($publication_text)) {
+    $_html['press_link'] = $publication_text;
+  }
+
+  if (!empty($author)) {
+    $_html['author'] = $author;
+  }
+}
+
+/**
+ * Preprocess view mode search for research node.
+ */
+function debut_preprocess_node__research__search(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['body'] = debut_render($content, 'field_research_text');
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['press_date'] = debut_render($content, 'field_publication_date');
+
+  $publication_link = qtools_api__field_get_item('node', $node, 'field_research_publication_link', 0, 'value');
+  $publication_text = qtools_api__field_get_item('node', $node, 'field_research_publication_text', 0, 'value');
+  $author = debut_render($content, 'field_research_author');
+
+  if (!empty($publication_link) && !empty($publication_text)) {
+    $_html['press_link'] = l($publication_text, $publication_link, array(
+      'absolute' => TRUE,
+      'html' => true,
+    ));
+  }
+  elseif (!empty($publication_text)) {
+    $_html['press_link'] = $publication_text;
+  }
+
+  if (!empty($author)) {
+    $_html['author'] = $author;
+  }
+}

@@ -1,21 +1,21 @@
 <?php
 /**
  * @file
- * debut_feature_pages_nobel_speech.pages_default.inc
+ * debut_feature_pages_research.pages_default.inc
  */
 
 /**
  * Implements hook_default_page_manager_pages().
  */
-function debut_feature_pages_nobel_speech_default_page_manager_pages() {
+function debut_feature_pages_research_default_page_manager_pages() {
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
-  $page->name = 'nobel_speech';
+  $page->name = 'research';
   $page->task = 'page';
-  $page->admin_title = 'Нобелевские речи';
+  $page->admin_title = 'Исследования';
   $page->admin_description = '';
-  $page->path = 'nobel_speech';
+  $page->path = 'research';
   $page->access = array();
   $page->menu = array();
   $page->arguments = array();
@@ -26,9 +26,9 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'page_nobel_speech_panel_context';
+  $handler->name = 'page_research_panel_context';
   $handler->task = 'page';
-  $handler->subtask = 'nobel_speech';
+  $handler->subtask = 'research';
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
@@ -44,7 +44,7 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
         'identifier' => 'Expose Year Filter context',
         'keyword' => 'year_filter',
         'name' => 'year_filter_context',
-        'view' => 'debut_view_list_nobel_speach',
+        'view' => 'debut_view_list_research',
         'id' => 1,
       ),
     ),
@@ -59,6 +59,7 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
           'not' => FALSE,
         ),
       ),
+      'logic' => 'and',
     ),
     'qtools_varnish_page_cache_form' => array(
       'ttl' => '604800',
@@ -80,19 +81,19 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     ),
   );
   $display->cache = array();
-  $display->title = '';
-  $display->uuid = 'af99141a-1722-4d79-93c5-1c5ce83afe89';
+  $display->title = 'Исследования';
+  $display->uuid = 'ac7b031d-20f0-4dd5-b1b2-f51cc69c3d3e';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-96e9390f-e08c-4e8e-b8b6-c0b60407526a';
+    $pane->pid = 'new-cc97951d-2288-4b50-944e-44bedbed50ca';
     $pane->panel = 'content_center';
     $pane->type = 'debut_common_years_header';
     $pane->subtype = 'debut_common_years_header';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'text' => 'Черновики «Нобелевских речей»',
+      'text' => 'Исследования',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -102,18 +103,18 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '96e9390f-e08c-4e8e-b8b6-c0b60407526a';
-    $display->content['new-96e9390f-e08c-4e8e-b8b6-c0b60407526a'] = $pane;
-    $display->panels['content_center'][0] = 'new-96e9390f-e08c-4e8e-b8b6-c0b60407526a';
+    $pane->uuid = 'cc97951d-2288-4b50-944e-44bedbed50ca';
+    $display->content['new-cc97951d-2288-4b50-944e-44bedbed50ca'] = $pane;
+    $display->panels['content_center'][0] = 'new-cc97951d-2288-4b50-944e-44bedbed50ca';
     $pane = new stdClass();
-    $pane->pid = 'new-86e234ab-09b5-4b68-9a88-8d7ddf035b18';
+    $pane->pid = 'new-452c78d8-549d-46fd-81d2-bac9882734fa';
     $pane->panel = 'content_center';
     $pane->type = 'debut_common_years_list';
     $pane->subtype = 'debut_common_years_list';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'view' => 'debut_view_list_nobel_speach',
+      'view' => 'debut_view_list_research',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -123,18 +124,18 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '86e234ab-09b5-4b68-9a88-8d7ddf035b18';
-    $display->content['new-86e234ab-09b5-4b68-9a88-8d7ddf035b18'] = $pane;
-    $display->panels['content_center'][1] = 'new-86e234ab-09b5-4b68-9a88-8d7ddf035b18';
+    $pane->uuid = '452c78d8-549d-46fd-81d2-bac9882734fa';
+    $display->content['new-452c78d8-549d-46fd-81d2-bac9882734fa'] = $pane;
+    $display->panels['content_center'][1] = 'new-452c78d8-549d-46fd-81d2-bac9882734fa';
     $pane = new stdClass();
-    $pane->pid = 'new-c1c01052-3d2e-4128-8a18-24306dd4e6d2';
+    $pane->pid = 'new-0c1f2ce1-7ae5-4cb9-9671-e4e37a70bc90';
     $pane->panel = 'content_center';
-    $pane->type = 'debut_common_nobel_listing';
-    $pane->subtype = 'debut_common_nobel_listing';
+    $pane->type = 'debut_common_research_listing';
+    $pane->subtype = 'debut_common_research_listing';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'context' => 'context_year_filter_contexts_1',
+      'context' => 'context_year_filter_context_1',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -144,11 +145,11 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $pane->uuid = 'c1c01052-3d2e-4128-8a18-24306dd4e6d2';
-    $display->content['new-c1c01052-3d2e-4128-8a18-24306dd4e6d2'] = $pane;
-    $display->panels['content_center'][2] = 'new-c1c01052-3d2e-4128-8a18-24306dd4e6d2';
+    $pane->uuid = '0c1f2ce1-7ae5-4cb9-9671-e4e37a70bc90';
+    $display->content['new-0c1f2ce1-7ae5-4cb9-9671-e4e37a70bc90'] = $pane;
+    $display->panels['content_center'][2] = 'new-0c1f2ce1-7ae5-4cb9-9671-e4e37a70bc90';
     $pane = new stdClass();
-    $pane->pid = 'new-7359132c-b573-4fd3-9dc6-339e04237084';
+    $pane->pid = 'new-24283e60-7423-41ce-b61d-285df88ab5ce';
     $pane->panel = 'content_left';
     $pane->type = 'debut_common_menu';
     $pane->subtype = 'debut_common_menu';
@@ -168,11 +169,11 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '7359132c-b573-4fd3-9dc6-339e04237084';
-    $display->content['new-7359132c-b573-4fd3-9dc6-339e04237084'] = $pane;
-    $display->panels['content_left'][0] = 'new-7359132c-b573-4fd3-9dc6-339e04237084';
+    $pane->uuid = '24283e60-7423-41ce-b61d-285df88ab5ce';
+    $display->content['new-24283e60-7423-41ce-b61d-285df88ab5ce'] = $pane;
+    $display->panels['content_left'][0] = 'new-24283e60-7423-41ce-b61d-285df88ab5ce';
     $pane = new stdClass();
-    $pane->pid = 'new-af05d23e-eac6-40f9-a4a7-78193d821a5c';
+    $pane->pid = 'new-25d42bfe-8dde-4155-ac3a-1c1c63947eb3';
     $pane->panel = 'content_left';
     $pane->type = 'debut_common_site_calendar';
     $pane->subtype = 'debut_common_site_calendar';
@@ -190,11 +191,11 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = 'af05d23e-eac6-40f9-a4a7-78193d821a5c';
-    $display->content['new-af05d23e-eac6-40f9-a4a7-78193d821a5c'] = $pane;
-    $display->panels['content_left'][1] = 'new-af05d23e-eac6-40f9-a4a7-78193d821a5c';
+    $pane->uuid = '25d42bfe-8dde-4155-ac3a-1c1c63947eb3';
+    $display->content['new-25d42bfe-8dde-4155-ac3a-1c1c63947eb3'] = $pane;
+    $display->panels['content_left'][1] = 'new-25d42bfe-8dde-4155-ac3a-1c1c63947eb3';
     $pane = new stdClass();
-    $pane->pid = 'new-fc4b1cb1-e49c-4ca3-b13b-57bebf7d21cc';
+    $pane->pid = 'new-b3dcd4a6-0362-4565-b6b7-a119b636bc9d';
     $pane->panel = 'content_left';
     $pane->type = 'debut_common_contact_us';
     $pane->subtype = 'debut_common_contact_us';
@@ -212,11 +213,11 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $pane->uuid = 'fc4b1cb1-e49c-4ca3-b13b-57bebf7d21cc';
-    $display->content['new-fc4b1cb1-e49c-4ca3-b13b-57bebf7d21cc'] = $pane;
-    $display->panels['content_left'][2] = 'new-fc4b1cb1-e49c-4ca3-b13b-57bebf7d21cc';
+    $pane->uuid = 'b3dcd4a6-0362-4565-b6b7-a119b636bc9d';
+    $display->content['new-b3dcd4a6-0362-4565-b6b7-a119b636bc9d'] = $pane;
+    $display->panels['content_left'][2] = 'new-b3dcd4a6-0362-4565-b6b7-a119b636bc9d';
     $pane = new stdClass();
-    $pane->pid = 'new-ef8d1f5d-eadb-4cfe-92dd-889bcf7f8f5c';
+    $pane->pid = 'new-4c284aad-ac8c-461c-be49-f3b1656fd57e';
     $pane->panel = 'content_right';
     $pane->type = 'debut_common_prize_jury';
     $pane->subtype = 'debut_common_prize_jury';
@@ -231,11 +232,11 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'ef8d1f5d-eadb-4cfe-92dd-889bcf7f8f5c';
-    $display->content['new-ef8d1f5d-eadb-4cfe-92dd-889bcf7f8f5c'] = $pane;
-    $display->panels['content_right'][0] = 'new-ef8d1f5d-eadb-4cfe-92dd-889bcf7f8f5c';
+    $pane->uuid = '4c284aad-ac8c-461c-be49-f3b1656fd57e';
+    $display->content['new-4c284aad-ac8c-461c-be49-f3b1656fd57e'] = $pane;
+    $display->panels['content_right'][0] = 'new-4c284aad-ac8c-461c-be49-f3b1656fd57e';
     $pane = new stdClass();
-    $pane->pid = 'new-feed1013-65da-476c-9a47-96320684348e';
+    $pane->pid = 'new-3b8390e7-0bfa-4f62-a584-a8b7d04ebd80';
     $pane->panel = 'content_right';
     $pane->type = 'debut_blocks_prize_person';
     $pane->subtype = 'debut_blocks_prize_person';
@@ -250,11 +251,11 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = 'feed1013-65da-476c-9a47-96320684348e';
-    $display->content['new-feed1013-65da-476c-9a47-96320684348e'] = $pane;
-    $display->panels['content_right'][1] = 'new-feed1013-65da-476c-9a47-96320684348e';
+    $pane->uuid = '3b8390e7-0bfa-4f62-a584-a8b7d04ebd80';
+    $display->content['new-3b8390e7-0bfa-4f62-a584-a8b7d04ebd80'] = $pane;
+    $display->panels['content_right'][1] = 'new-3b8390e7-0bfa-4f62-a584-a8b7d04ebd80';
     $pane = new stdClass();
-    $pane->pid = 'new-f07bf221-a2f2-434d-a5ae-41c49a8b60fe';
+    $pane->pid = 'new-b275650f-7dfc-49cd-a6d8-a0a045564dcb';
     $pane->panel = 'content_right';
     $pane->type = 'debut_common_newsletter_block';
     $pane->subtype = 'debut_common_newsletter_block';
@@ -273,36 +274,11 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $pane->uuid = 'f07bf221-a2f2-434d-a5ae-41c49a8b60fe';
-    $display->content['new-f07bf221-a2f2-434d-a5ae-41c49a8b60fe'] = $pane;
-    $display->panels['content_right'][2] = 'new-f07bf221-a2f2-434d-a5ae-41c49a8b60fe';
+    $pane->uuid = 'b275650f-7dfc-49cd-a6d8-a0a045564dcb';
+    $display->content['new-b275650f-7dfc-49cd-a6d8-a0a045564dcb'] = $pane;
+    $display->panels['content_right'][2] = 'new-b275650f-7dfc-49cd-a6d8-a0a045564dcb';
     $pane = new stdClass();
-    $pane->pid = 'new-15c75228-9916-4f8e-9d85-ef0dd1f01101';
-    $pane->panel = 'top';
-    $pane->type = 'debut_common_breadcrumb';
-    $pane->subtype = 'debut_common_breadcrumb';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'extend' => 0,
-      'custombc' => '«Нобелевские речи»',
-      'context' => array(
-        0 => 'empty',
-      ),
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '15c75228-9916-4f8e-9d85-ef0dd1f01101';
-    $display->content['new-15c75228-9916-4f8e-9d85-ef0dd1f01101'] = $pane;
-    $display->panels['top'][0] = 'new-15c75228-9916-4f8e-9d85-ef0dd1f01101';
-    $pane = new stdClass();
-    $pane->pid = 'new-51c29f10-3b99-4647-a0a2-b7874e17c971';
+    $pane->pid = 'new-37eca829-1809-4168-a452-63c294b1a73d';
     $pane->panel = 'top';
     $pane->type = 'debut_common_social_links';
     $pane->subtype = 'debut_common_social_links';
@@ -319,11 +295,36 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '37eca829-1809-4168-a452-63c294b1a73d';
+    $display->content['new-37eca829-1809-4168-a452-63c294b1a73d'] = $pane;
+    $display->panels['top'][0] = 'new-37eca829-1809-4168-a452-63c294b1a73d';
+    $pane = new stdClass();
+    $pane->pid = 'new-a2aec159-a555-4600-9615-6cb1e23322c9';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => 'Исследования',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '51c29f10-3b99-4647-a0a2-b7874e17c971';
-    $display->content['new-51c29f10-3b99-4647-a0a2-b7874e17c971'] = $pane;
-    $display->panels['top'][1] = 'new-51c29f10-3b99-4647-a0a2-b7874e17c971';
+    $pane->uuid = 'a2aec159-a555-4600-9615-6cb1e23322c9';
+    $display->content['new-a2aec159-a555-4600-9615-6cb1e23322c9'] = $pane;
+    $display->panels['top'][1] = 'new-a2aec159-a555-4600-9615-6cb1e23322c9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -331,9 +332,9 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'page_nobel_speech_panel_context_2';
+  $handler->name = 'page_research_panel_context_2';
   $handler->task = 'page';
-  $handler->subtask = 'nobel_speech';
+  $handler->subtask = 'research';
   $handler->handler = 'panel_context';
   $handler->weight = 1;
   $handler->conf = array(
@@ -349,7 +350,7 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
         'identifier' => 'Expose Year Filter context',
         'keyword' => 'year_filter',
         'name' => 'year_filter_context',
-        'view' => 'debut_view_list_nobel_speach',
+        'view' => 'debut_view_list_research',
         'id' => 1,
       ),
     ),
@@ -377,16 +378,22 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
+      'middle' => NULL,
+      'top' => NULL,
+      'content_pre' => NULL,
+      'content_left' => NULL,
+      'content_center' => NULL,
+      'content_right' => NULL,
       'content' => NULL,
     ),
   );
   $display->cache = array();
   $display->title = '';
-  $display->uuid = '38037995-791e-473f-aaea-024962be36a6';
+  $display->uuid = 'ac7b031d-20f0-4dd5-b1b2-f51cc69c3d3e';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-9420c27f-84d6-4f82-80fc-7cb03df79079';
+    $pane->pid = 'new-a2aec159-a555-4600-9615-6cb1e23322c9';
     $pane->panel = 'content';
     $pane->type = 'debut_common_breadcrumb';
     $pane->subtype = 'debut_common_breadcrumb';
@@ -407,18 +414,18 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '9420c27f-84d6-4f82-80fc-7cb03df79079';
-    $display->content['new-9420c27f-84d6-4f82-80fc-7cb03df79079'] = $pane;
-    $display->panels['content'][0] = 'new-9420c27f-84d6-4f82-80fc-7cb03df79079';
+    $pane->uuid = 'a2aec159-a555-4600-9615-6cb1e23322c9';
+    $display->content['new-a2aec159-a555-4600-9615-6cb1e23322c9'] = $pane;
+    $display->panels['content'][0] = 'new-a2aec159-a555-4600-9615-6cb1e23322c9';
     $pane = new stdClass();
-    $pane->pid = 'new-228d883a-4e56-426c-abe4-233d09251bff';
+    $pane->pid = 'new-cc97951d-2288-4b50-944e-44bedbed50ca';
     $pane->panel = 'content';
     $pane->type = 'debut_common_years_header';
     $pane->subtype = 'debut_common_years_header';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'text' => '«Нобелевские речи»',
+      'text' => 'Исследования',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -428,18 +435,18 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '228d883a-4e56-426c-abe4-233d09251bff';
-    $display->content['new-228d883a-4e56-426c-abe4-233d09251bff'] = $pane;
-    $display->panels['content'][1] = 'new-228d883a-4e56-426c-abe4-233d09251bff';
+    $pane->uuid = 'cc97951d-2288-4b50-944e-44bedbed50ca';
+    $display->content['new-cc97951d-2288-4b50-944e-44bedbed50ca'] = $pane;
+    $display->panels['content'][1] = 'new-cc97951d-2288-4b50-944e-44bedbed50ca';
     $pane = new stdClass();
-    $pane->pid = 'new-e522a2a9-4fbb-4af1-aa47-94788c57cc4f';
+    $pane->pid = 'new-452c78d8-549d-46fd-81d2-bac9882734fa';
     $pane->panel = 'content';
     $pane->type = 'debut_common_years_list';
     $pane->subtype = 'debut_common_years_list';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'view' => 'debut_view_list_nobel_speach',
+      'view' => 'debut_view_list_research',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -449,14 +456,14 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $pane->uuid = 'e522a2a9-4fbb-4af1-aa47-94788c57cc4f';
-    $display->content['new-e522a2a9-4fbb-4af1-aa47-94788c57cc4f'] = $pane;
-    $display->panels['content'][2] = 'new-e522a2a9-4fbb-4af1-aa47-94788c57cc4f';
+    $pane->uuid = '452c78d8-549d-46fd-81d2-bac9882734fa';
+    $display->content['new-452c78d8-549d-46fd-81d2-bac9882734fa'] = $pane;
+    $display->panels['content'][2] = 'new-452c78d8-549d-46fd-81d2-bac9882734fa';
     $pane = new stdClass();
-    $pane->pid = 'new-227ed829-3db0-4094-b2a3-e5424ad82796';
+    $pane->pid = 'new-87fdf399-88d9-4448-b140-df0ce9e926c9';
     $pane->panel = 'content';
-    $pane->type = 'debut_common_nobel_listing';
-    $pane->subtype = 'debut_common_nobel_listing';
+    $pane->type = 'debut_common_research_listing';
+    $pane->subtype = 'debut_common_research_listing';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -470,11 +477,11 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 3;
     $pane->locks = array();
-    $pane->uuid = '227ed829-3db0-4094-b2a3-e5424ad82796';
-    $display->content['new-227ed829-3db0-4094-b2a3-e5424ad82796'] = $pane;
-    $display->panels['content'][3] = 'new-227ed829-3db0-4094-b2a3-e5424ad82796';
+    $pane->uuid = '87fdf399-88d9-4448-b140-df0ce9e926c9';
+    $display->content['new-87fdf399-88d9-4448-b140-df0ce9e926c9'] = $pane;
+    $display->panels['content'][3] = 'new-87fdf399-88d9-4448-b140-df0ce9e926c9';
     $pane = new stdClass();
-    $pane->pid = 'new-081a4c8d-8527-4ee8-aa47-e920a01c468d';
+    $pane->pid = 'new-a4860171-8469-42a6-8f0d-02ec4b6efad6';
     $pane->panel = 'content';
     $pane->type = 'debut_common_prize_jury';
     $pane->subtype = 'debut_common_prize_jury';
@@ -489,11 +496,11 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 4;
     $pane->locks = array();
-    $pane->uuid = '081a4c8d-8527-4ee8-aa47-e920a01c468d';
-    $display->content['new-081a4c8d-8527-4ee8-aa47-e920a01c468d'] = $pane;
-    $display->panels['content'][4] = 'new-081a4c8d-8527-4ee8-aa47-e920a01c468d';
+    $pane->uuid = 'a4860171-8469-42a6-8f0d-02ec4b6efad6';
+    $display->content['new-a4860171-8469-42a6-8f0d-02ec4b6efad6'] = $pane;
+    $display->panels['content'][4] = 'new-a4860171-8469-42a6-8f0d-02ec4b6efad6';
     $pane = new stdClass();
-    $pane->pid = 'new-080a8b13-e58f-45be-92ae-e310b4efb5ee';
+    $pane->pid = 'new-2c430161-78e5-4067-8c86-65cf476c324f';
     $pane->panel = 'content';
     $pane->type = 'debut_blocks_prize_person';
     $pane->subtype = 'debut_blocks_prize_person';
@@ -508,14 +515,14 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 5;
     $pane->locks = array();
-    $pane->uuid = '080a8b13-e58f-45be-92ae-e310b4efb5ee';
-    $display->content['new-080a8b13-e58f-45be-92ae-e310b4efb5ee'] = $pane;
-    $display->panels['content'][5] = 'new-080a8b13-e58f-45be-92ae-e310b4efb5ee';
+    $pane->uuid = '2c430161-78e5-4067-8c86-65cf476c324f';
+    $display->content['new-2c430161-78e5-4067-8c86-65cf476c324f'] = $pane;
+    $display->panels['content'][5] = 'new-2c430161-78e5-4067-8c86-65cf476c324f';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-9420c27f-84d6-4f82-80fc-7cb03df79079';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
-  $pages['nobel_speech'] = $page;
+  $pages['research'] = $page;
 
   return $pages;
 

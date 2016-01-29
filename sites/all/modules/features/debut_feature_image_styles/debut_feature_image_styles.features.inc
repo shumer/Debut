@@ -298,18 +298,19 @@ function debut_feature_image_styles_image_default_styles() {
     'name' => 'node__field_photo_listing_photo__full',
     'label' => 'node__field_photo_listing_photo__full',
     'effects' => array(
-      6 => array(
-        'label' => 'Масштабирование и обрезка',
-        'help' => '«Масштабирование и обрезка» сначала масштабирует изображение, а затем обрезает большее значение. Это наиболее эффективный способ создания миниатюр без искажения пропорций исходного изображения.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
+      3 => array(
+        'label' => 'Масштабирование',
+        'help' => 'Масштабирование позволяет изменить размеры изображения с сохранением пропорций. Если введён размер только одной стороны, то размер другой будет вычислен автоматически. Если введены два размера, то каждое будет определять максимальный размер по своему направлению и применяться в зависимости от формата изображения.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
         'module' => 'image',
-        'name' => 'image_scale_and_crop',
+        'name' => 'image_scale',
         'data' => array(
           'width' => 500,
-          'height' => 265,
+          'height' => '',
+          'upscale' => 1,
         ),
         'weight' => 1,
       ),

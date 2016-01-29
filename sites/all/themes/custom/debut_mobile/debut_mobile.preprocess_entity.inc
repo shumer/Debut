@@ -1865,3 +1865,112 @@ function debut_mobile_preprocess_node__ibooks__popup(&$variables) {
 function debut_mobile_preprocess_node__ibooks__search(&$variables) {
   debut_mobile_preprocess_node__ibooks__home_page($variables);
 }
+
+/**
+ * Preprocess node__research__search.
+ */
+function debut_mobile_preprocess_node__research__search(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['field_press_text'] = debut_common_trim(debut_mobile_render($content, 'field_research_text'), 350);
+  $_html['field_publication_date'] = debut_mobile_render($content, 'field_publication_date');
+
+  $publication_link = qtools_api__field_get_item('node', $node, 'field_research_publication_link', 0, 'value');
+  $publication_text = qtools_api__field_get_item('node', $node, 'field_research_publication_text', 0, 'value');
+  $author = debut_mobile_render($content, 'field_research_author');
+
+  if (!empty($publication_link) && !empty($publication_text)) {
+    $_html['press_link'] = l($publication_text, $publication_link, array(
+      'absolute' => TRUE,
+      'html' => true,
+    ));
+  }
+  elseif (!empty($publication_text)) {
+    $_html['press_link'] = $publication_text;
+  }
+
+  if (!empty($author)) {
+    $_html['author'] = $author;
+  }
+
+  $_data['class'] = '';
+  if ($node->_last) {
+    $_data['class'] = 'last';
+  }
+}
+
+/**
+ * Preprocess node__research__listing.
+ */
+function debut_mobile_preprocess_node__research__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['field_press_text'] = debut_common_trim(debut_mobile_render($content, 'field_research_text'), 350);
+  $_html['field_publication_date'] = debut_mobile_render($content, 'field_publication_date');
+
+  $publication_link = qtools_api__field_get_item('node', $node, 'field_research_publication_link', 0, 'value');
+  $publication_text = qtools_api__field_get_item('node', $node, 'field_research_publication_text', 0, 'value');
+  $author = debut_mobile_render($content, 'field_research_author');
+
+  if (!empty($publication_link) && !empty($publication_text)) {
+    $_html['press_link'] = l($publication_text, $publication_link, array(
+      'absolute' => TRUE,
+      'html' => true,
+    ));
+  }
+  elseif (!empty($publication_text)) {
+    $_html['press_link'] = $publication_text;
+  }
+
+  if (!empty($author)) {
+    $_html['author'] = $author;
+  }
+
+  $_data['class'] = '';
+  if ($node->_last) {
+    $_data['class'] = 'last';
+  }
+}
+
+/**
+ * Preprocess node__research__full.
+ */
+function debut_mobile_preprocess_node__research__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = check_plain($node->title);
+  $published = t('Published !date', array('!date' => debut_mobile_render($content, 'field_publication_date')));
+  $_html['field_publication_date'] = $published;
+  $_html['field_press_text'] = debut_mobile_render($content, 'field_research_text');
+
+  $publication_link = qtools_api__field_get_item('node', $node, 'field_research_publication_link', 0, 'value');
+  $publication_text = qtools_api__field_get_item('node', $node, 'field_research_publication_text', 0, 'value');
+  $author = debut_mobile_render($content, 'field_research_author');
+
+  if (!empty($publication_link) && !empty($publication_text)) {
+    $_html['press_link'] = l($publication_text, $publication_link, array(
+      'absolute' => TRUE,
+      'html' => true,
+    ));
+  }
+  elseif (!empty($publication_text)) {
+    $_html['press_link'] = $publication_text;
+  }
+
+  if (!empty($author)) {
+    $_html['author'] = $author;
+  }
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
