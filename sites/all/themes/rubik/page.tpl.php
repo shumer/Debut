@@ -6,11 +6,6 @@
 </div></div>
 
 <div id='page-title'><div class='limiter clearfix'>
-  <div class='tabs clearfix'>
-    <?php if ($primary_local_tasks): ?>
-      <ul class='primary-tabs links clearfix'><?php print render($primary_local_tasks) ?></ul>
-    <?php endif; ?>
-  </div>
   <?php print render($title_prefix); ?>
   <h1 class='page-title <?php print $page_icon_class ?>'>
     <?php if (!empty($page_icon_class)): ?><span class='icon'></span><?php endif; ?>
@@ -20,6 +15,12 @@
     <ul class='action-links links clearfix'><?php print render($action_links) ?></ul>
   <?php endif; ?>
   <?php print render($title_suffix); ?>
+  <div class='tabs clearfix'>
+    <?php if ($primary_local_tasks): ?>
+      <ul class='primary-tabs links clearfix'><?php print render($primary_local_tasks) ?></ul>
+    <?php endif; ?>
+  </div>
+  <div class="clearfix" style="height: 35px;"></div>
 </div></div>
 
 <?php if ($show_messages && $messages): ?>

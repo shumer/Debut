@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Views - View list Research feature.
+ */
+
+include_once 'debut_feature_views_view_list_research.features.inc';

@@ -168,7 +168,15 @@ function debut_feature_pages_home_default_page_manager_pages() {
       'override_title' => 1,
       'override_title_text' => 'Изменения на сайте',
     );
-    $pane->cache = array();
+    $pane->cache = array(
+      'method' => 'esi',
+      'settings' => array(
+        'ttl' => '120',
+        'cachemode' => '-1',
+        'nocontext' => 1,
+        'cachetags' => '',
+      ),
+    );
     $pane->style = array(
       'settings' => NULL,
     );
