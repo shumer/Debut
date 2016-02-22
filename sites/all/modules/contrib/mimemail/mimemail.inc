@@ -123,6 +123,7 @@ function mimemail_extract_files($html) {
       break;
     }
   }
+  $encoding = 'base64';
   //if ($encoding == 'base64') {
     $content = rtrim(chunk_split(base64_encode($content)));
   //}
