@@ -123,9 +123,9 @@ function mimemail_extract_files($html) {
       break;
     }
   }
-  if ($encoding == 'base64') {
+  //if ($encoding == 'base64') {
     $content = rtrim(chunk_split(base64_encode($content)));
-  }
+  //}
 
   $document = array(array(
     'Content-Type' => "text/html; charset=utf-8",
