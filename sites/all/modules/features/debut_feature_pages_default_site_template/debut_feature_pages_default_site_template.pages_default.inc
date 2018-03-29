@@ -136,7 +136,7 @@ function debut_feature_pages_default_site_template_default_page_manager_handlers
       'admin_title' => 'PingDom',
       'title' => 'PingDom',
       'body' => '<script>
-var _prum = [[\'id\', \'54eef555abe53d4637d54684\'],
+var _prum = [[\'id\', \'5508a459abe53d0c04f15e34\'],
              [\'mark\', \'firstbyte\', (new Date()).getTime()]];
 (function() {
     var s = document.getElementsByTagName(\'script\')[0]
@@ -393,7 +393,7 @@ var _prum = [[\'id\', \'54eef555abe53d4637d54684\'],
       'admin_title' => 'PingDom',
       'title' => 'PingDom',
       'body' => '<script>
-var _prum = [[\'id\', \'54eef555abe53d4637d54684\'],
+var _prum = [[\'id\', \'5508a459abe53d0c04f15e34\'],
              [\'mark\', \'firstbyte\', (new Date()).getTime()]];
 (function() {
     var s = document.getElementsByTagName(\'script\')[0]
